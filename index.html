@@ -5,478 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CivicFix</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #f5f2eb;
-      --ink: #1a1a18;
-      --muted: #6b6b60;
-      --red: #d94f3d;
-      --yellow: #e8a838;
-      --green: #3a8c5c;
-      --card: #edeae1;
-      --border: #d6d2c7;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 48px;
-      height: 56px;
-    }
-
-    .nav-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-logo span { color: var(--green); }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--ink); }
-
-    /* SECTIONS */
-    section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 88px 32px;
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
-    }
-
-    h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
-    }
-
-    h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    p {
-      color: var(--muted);
-      max-width: 620px;
-      margin-bottom: 16px;
-    }
-
-    /* HERO */
-    #hero {
-      padding-top: 120px;
-      padding-bottom: 100px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hero-tag {
-      display: inline-block;
-      background: var(--green);
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 2px;
-      margin-bottom: 24px;
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 540px;
-      margin-bottom: 40px;
-    }
-
-    .status-pills {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .dot-red { background: var(--red); }
-    .dot-yellow { background: var(--yellow); }
-    .dot-green { background: var(--green); }
-
-    /* DIVIDER */
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    /* PROBLEM */
-    #problem { border-bottom: 1px solid var(--border); }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .col-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 28px;
-    }
-
-    .col-card h3 { margin-bottom: 12px; }
-
-    .col-card ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .col-card ul li {
-      font-size: 0.9rem;
-      color: var(--muted);
-      padding-left: 16px;
-      position: relative;
-    }
-
-    .col-card ul li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--border);
-    }
-
-    /* SOLUTION */
-    #solution { border-bottom: 1px solid var(--border); }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 40px;
-    }
-
-    .feature-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      transition: border-color 0.2s;
-    }
-
-    .feature-card:hover { border-color: var(--green); }
-
-    .feature-icon {
-      font-size: 1.4rem;
-      margin-bottom: 12px;
-    }
-
-    .feature-card h3 { margin-bottom: 6px; }
-
-    .feature-card p {
-      font-size: 0.88rem;
-      margin: 0;
-    }
-
-    /* WORKFLOW */
-    #workflow { border-bottom: 1px solid var(--border); }
-
-    .workflow-steps {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: 40px 1fr;
-      gap: 20px;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-    }
-
-    .step:last-child { border-bottom: none; }
-
-    .step-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--ink);
-      color: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .step-content h3 { margin-bottom: 4px; }
-    .step-content p { margin: 0; font-size: 0.9rem; }
-
-    /* STRATEGY */
-    #strategy { border-bottom: 1px solid var(--border); }
-
-    .strategy-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      margin-top: 40px;
-    }
-
-    .strategy-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-    }
-
-    .strategy-card h3 {
-      font-size: 0.85rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .strategy-card p {
-      font-size: 0.88rem;
-      margin: 0;
-    }
-
-    .value-chain {
-      margin-top: 40px;
-      display: flex;
-      align-items: center;
-      gap: 0;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .vc-step {
-      flex: 1;
-      padding: 20px 16px;
-      text-align: center;
-      border-right: 1px solid var(--border);
-      position: relative;
-    }
-
-    .vc-step:last-child { border-right: none; }
-
-    .vc-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .vc-desc {
-      font-size: 0.82rem;
-      color: var(--ink);
-    }
-
-    /* SOCIAL THEORIES */
-    #theories { border-bottom: 1px solid var(--border); }
-
-    .theory-list {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .theory-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 28px;
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-
-    .theory-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      line-height: 1.2;
-    }
-
-    .theory-tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    .theory-body p {
-      font-size: 0.9rem;
-      margin: 0;
-      max-width: 100%;
-    }
-
-    .theory-card.equity {
-      border-color: var(--yellow);
-      background: #fdf8ee;
-    }
-
-    /* TEAM */
-    #team { border-bottom: 1px solid var(--border); }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 40px;
-    }
-
-    .team-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: var(--ink);
-      color: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      margin: 0 auto 12px;
-    }
-
-    .team-card h3 { font-size: 0.95rem; margin-bottom: 4px; }
-
-    .team-card p {
-      font-size: 0.8rem;
-      margin: 0;
-      max-width: 100%;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 48px 32px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
-
-    footer strong {
-      font-family: 'DM Serif Display', serif;
-      color: var(--ink);
-      font-size: 1rem;
-    }
-
-    /* FADE IN */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 680px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      section { padding: 60px 20px; }
-      .two-col, .features-grid, .strategy-grid, .theory-card, .team-grid {
-        grid-template-columns: 1fr;
-      }
-      .value-chain { flex-direction: column; }
-      .vc-step { border-right: none; border-bottom: 1px solid var(--border); }
-      .vc-step:last-child { border-bottom: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="static/style.css" />
 </head>
 <body>
 
@@ -495,21 +24,16 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-tag">67-250 IS Milieux</div>
+    <div class="hero-tag">67-250 IS Milieux People Project</div>
     <h1>Fix your city.<br><em>One photo at a time.</em></h1>
-    <p class="hero-sub">CivicFix is a citizen reporting app that uses AI and GPS to make it effortless to report local infrastructure issues and track repairs in real time.</p>
-    <div class="status-pills">
-      <div class="pill"><div class="dot dot-red"></div> Reported</div>
-      <div class="pill"><div class="dot dot-yellow"></div> In Progress</div>
-      <div class="pill"><div class="dot dot-green"></div> Resolved</div>
-    </div>
+    <p class="hero-sub">CivicFix, a proposed citizen reporting app that uses AI and GPS to make it effortless to report local infrastructure issues and track repairs in real time.</p>
   </section>
 
   <!-- PROBLEM -->
   <section id="problem" class="fade-in">
     <div class="section-label">01 — Problem</div>
-    <h2>Reporting is broken.</h2>
-    <p>Citizens know when something is wrong in their neighborhood, but the systems in place to report it are outdated, hard to find, and often lead nowhere. This erodes trust in local government and leaves real problems unfixed.</p>
+    <h2>Reporting is difficult</h2>
+    <p>Citizens know when something is wrong in their neighborhood, but the systems in place to report it are outdated, hard to find or often lead nowhere. This erodes trust in local government and leaves real problems unfixed.</p>
     <div class="two-col">
       <div class="col-card">
         <h3>What citizens experience</h3>
@@ -535,31 +59,26 @@
   <!-- SOLUTION -->
   <section id="solution" class="fade-in">
     <div class="section-label">02 — Solution</div>
-    <h2>CivicFix.</h2>
+    <h2>CivicFix</h2>
     <p>A mobile app where residents take a photo of any infrastructure issue. AI identifies the problem, GPS tags the location, and the report is automatically routed to the right department. Everyone can track progress on a live map.</p>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">🤖</div>
         <h3>AI Issue Detection</h3>
         <p>Takes a photo, AI analyzes and highlights the problem, user confirms before submitting.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📡</div>
         <h3>Smart Routing</h3>
         <p>Report automatically sent to the correct agency, no need to know who handles what.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📍</div>
         <h3>Auto Location Tagging</h3>
         <p>GPS pins the exact spot without any manual input. Editable if needed.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🗺️</div>
         <h3>Interactive Map</h3>
         <p>See all reported issues across the city with color-coded status: red, yellow, green.</p>
       </div>
       <div class="feature-card" style="grid-column: span 2;">
-        <div class="feature-icon">🔔</div>
         <h3>Status Updates</h3>
         <p>Reporters get notified as their issue moves through the system, from submitted to resolved. Your voice actually matters.</p>
       </div>
@@ -569,8 +88,7 @@
   <!-- WORKFLOW -->
   <section id="workflow" class="fade-in">
     <div class="section-label">03 — How It Works</div>
-    <h2>Simple by design.</h2>
-    <p>The citizen does almost nothing. The system handles everything in the background.</p>
+    <h2>Useflow</h2>
     <div class="workflow-steps">
       <div class="step">
         <div class="step-num">1</div>
@@ -608,12 +126,16 @@
         </div>
       </div>
     </div>
+
+    <div class="wireframe-showcase fade-in">
+      <img src="static/app_wireframes.png" alt="CivicFix mobile app wireframes" />
+    </div>
   </section>
 
   <!-- STRATEGY -->
   <section id="strategy" class="fade-in">
     <div class="section-label">04 — Strategy</div>
-    <h2>Built to scale.</h2>
+    <h2>Focus on Scale</h2>
     <p>CivicFix isn't a for-profit app, but it still creates clear, measurable value for municipalities and the communities they serve.</p>
 
     <div class="value-chain">
@@ -646,7 +168,22 @@
       </div>
       <div class="strategy-card">
         <h3>Scalability</h3>
-        <p>Same core platform across city sizes. Can expand to parks, transit, graffiti removal without rebuilding from scratch.</p>
+        <p>Same core platform across city sizes. Can expand to parks, transit, graffiti removal, etc.. without rebuilding from scratch.</p>
+      </div>
+    </div>
+
+    <div class="strategy-grid" style="margin-top: 16px;">
+      <div class="strategy-card">
+        <h3>Why it's feasible</h3>
+        <p>The tech is realistic because AI image analysis, GPS, and map tracking already exist in similar forms. The biggest challenge is adoption, since the app only works well if many people use it. A pilot city could help test usability and show real-world impact.</p>
+      </div>
+      <div class="strategy-card">
+        <h3>Why it's meaningful</h3>
+        <p>This app is meaningful because it addresses a real everyday problem that affects safety, quality of life, and trust in local government. By making it easier to report issues, it can help communities get repairs done faster and more efficiently, which improves both public infrastructure and the relationship between citizens and government.</p>
+      </div>
+      <div class="strategy-card">
+        <h3>Why it's user-centered</h3>
+        <p>The design focuses on making the reporting process simple and low-effort for the user. A person only needs to take a photo, while the app handles location tagging, issue detection, and routing in the background. It also keeps the user informed via status updates so that they can see what happens after they submit a report and leave feeling like their voice actually matters.</p>
       </div>
     </div>
   </section>
@@ -654,8 +191,7 @@
   <!-- THEORIES -->
   <section id="theories" class="fade-in">
     <div class="section-label">05 — Social Insights</div>
-    <h2>Theory meets practice.</h2>
-    <p>Three frameworks help explain how CivicFix will be adopted, who it helps, and where it might fall short.</p>
+    <h2>Social Theories</h2>
     <div class="theory-list">
       <div class="theory-card">
         <div>
@@ -690,8 +226,8 @@
   <!-- TEAM -->
   <section id="team" class="fade-in">
     <div class="section-label">06 — Team</div>
-    <h2>Who built this.</h2>
-    <p>Team B3 / DAJA. Four people, clearly defined lanes, one shared deadline.</p>
+    <h2>Who Built This</h2>
+    <p>Team B3 / DAJA</p>
     <div class="team-grid">
       <div class="team-card">
         <div class="avatar">D</div>
@@ -701,7 +237,7 @@
       <div class="team-card">
         <div class="avatar">A</div>
         <h3>Anna</h3>
-        <p>Brainstorming lead, problem framing, poster design</p>
+        <p>Brainstorming lead, social theory research, poster design</p>
       </div>
       <div class="team-card">
         <div class="avatar">J</div>
@@ -711,12 +247,12 @@
       <div class="team-card">
         <div class="avatar">A</div>
         <h3>Arianne</h3>
-        <p>Brainstorming lead, social theory research, poster design</p>
+        <p>Brainstorming lead, problem framing, poster design</p>
       </div>
     </div>
     <div class="col-card" style="margin-top: 16px;">
       <h3>How we worked</h3>
-      <p style="max-width: 100%; margin-top: 8px;">We kicked things off together as a group, workshopping the concept and narrowing down the problem space collaboratively. From there, we split into natural lanes based on interest and skill, Anna and Arianne took ownership of the poster while Dylan and Jarrett focused on the website. Decisions were made as a team throughout, and we checked in regularly to make sure everything stayed aligned.</p>
+      <p style="max-width: 100%; margin-top: 8px;">We kicked things off together as a group, workshopping the concept and narrowing down the problem space collaboratively. From there, we split into lanes based on interest and skill, Anna and Arianne took ownership of the poster while Dylan and Jarrett focused on the website. Decisions were made as a team throughout, and we checked in regularly to make sure everything stayed aligned.</p>
     </div>
   </section>
 
@@ -726,14 +262,6 @@
     67-250 IS Milieux &nbsp;·&nbsp; Carnegie Mellon University &nbsp;·&nbsp; Spring 2025
   </footer>
 
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+  <script src="static/script.js"></script>
 </body>
 </html>
